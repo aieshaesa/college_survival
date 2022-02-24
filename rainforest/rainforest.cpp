@@ -1,3 +1,4 @@
+//Authors: Patrick Cruz
 //3350
 //program: rainforest.cpp
 //author:  Gordon Griesel
