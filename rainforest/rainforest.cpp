@@ -1,4 +1,4 @@
-//Authors: Patrick Cruz
+//Modified By: Patrick Cruz, Aiesha Esa
 //3350
 //program: rainforest.cpp
 //author:  Gordon Griesel
@@ -122,7 +122,7 @@ public:
 	}
 };
 Image img[4] = {
-"./images/bigfoot.png",
+"./images/metalslug.png",
 "./images/forest.png",
 "./images/forestTrans.png",
 "./images/umbrella.png" };
@@ -546,7 +546,7 @@ int checkKeys(XEvent *e)
 		return 0;
 	}
 	switch (key) {
-		case XK_b:
+		case XK_m:
 			g.showBigfoot ^= 1;
 			if (g.showBigfoot) {
 				bigfoot.pos[0] = -250.0;
@@ -984,7 +984,7 @@ void render()
 	r.bot = g.yres - 20;
 	r.left = 10;
 	r.center = 0;
-	ggprint8b(&r, 16, c, "B - Bigfoot");
+	ggprint8b(&r, 16, c, "M - Marco");
 	ggprint8b(&r, 16, c, "F - Forest");
 	ggprint8b(&r, 16, c, "S - Silhouette");
 	ggprint8b(&r, 16, c, "T - Trees");
