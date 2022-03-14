@@ -1,2 +1,9 @@
-/* David Mesa's Code */
-//testing
+// Author: David Mesa's
+//
+// This is showing my ability to code and my contribution to the group
+//
+//
+#include <stdio.h>
+#include "dmesa.h"
+
+
