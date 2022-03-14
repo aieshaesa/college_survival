@@ -1,6 +1,6 @@
-//Modified By: Patrick Cruz, Aiesha Esa
+//Modified By: Patrick Cruz, Aiesha Esa, David Mesa
 //3350
-//program: rainforest.cpp
+//program: college_survial.cpp
 //author:  Gordon Griesel
 //date:    2013 to 2021
 //
@@ -29,6 +29,8 @@
 #include "log.h"
 //#include "ppm.h"
 #include "fonts.h"
+#include "dmesa.h"
+extern class David dm;
 
 //defined types
 typedef double Flt;
