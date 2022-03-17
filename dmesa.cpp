@@ -6,4 +6,12 @@
 #include <stdio.h>
 #include "dmesa.h"
 
+Credits credits;
+
+void Credits :: showPage()
+{
+  
+
+
+}
 
