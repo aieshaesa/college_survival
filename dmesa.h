@@ -3,13 +3,13 @@
 
 //Author: David Mesa
 //This is my header file to show case my contribtion to the project
-//
 
-
-
-
-
-
+class Credits
+{
+    public:
+        void showPage();
+        
+};
 
 
 #endif
