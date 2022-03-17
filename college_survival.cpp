@@ -31,7 +31,7 @@
 #include "fonts.h"
 #include "dmesa.h"
 extern class David dm;
-
+extern class Credits credits;
 //defined types
 typedef double Flt;
 typedef double Vec[3];
@@ -145,6 +145,7 @@ public:
 	int showRain;
 	int showUmbrella;
 	int deflection;
+    int credits_state;
 	Global() {
 		logOpen();
 		done=0;
@@ -157,6 +158,7 @@ public:
 		showRain=0;
 		showUmbrella=0;
 		deflection=0;
+        credits_state=0;
 	}
 	~Global() {
 		logClose();
@@ -548,6 +550,10 @@ int checkKeys(XEvent *e)
 		return 0;
 	}
 	switch (key) {
+        //David wrote case for credit
+        case XK_c:
+            g.credits_state = !g.credits_state;
+            break;
 		case XK_m:
 			g.showBigfoot ^= 1;
 			if (g.showBigfoot) {
@@ -912,6 +918,12 @@ void render()
 	glClear(GL_COLOR_BUFFER_BIT);
 	//
 	//draw a quad with texture
+    //David put in the credit page 
+    if (g.credits_state)
+    {
+        credits.showPage();
+        return;
+    }
 	float wid = 120.0f;
 	glColor3f(1.0, 1.0, 1.0);
 	if (g.forest) {
