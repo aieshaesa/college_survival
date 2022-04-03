@@ -8,11 +8,10 @@
 class Credits
 {
     public:
-        void showPage(int xres, int yres);
-        
+        void showPage(int yres);
 };
 
-//extern void ggprint8b(Rect *r, int advance, int cref, const char *fmt, ...);
+
 
 
 
