@@ -921,7 +921,8 @@ void render()
     //David put in the credit page 
     if (g.credits_state)
     {
-        credits.showPage(g.xres,g.yres);
+       // credits.showPage(g.xres,g.yres);
+       credits.showPage(g.yres);
         return;
     }
 	float wid = 120.0f;
