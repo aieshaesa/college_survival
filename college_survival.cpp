@@ -123,9 +123,11 @@ public:
 			unlink(ppmname);
 	}
 };
+
+// Aiesha changed Bigfoot image to metalslug, and forest image to campus
 Image img[4] = {
 "./images/metalslug.png",
-"./images/forest.png",
+"./images/campus.png",
 "./images/forestTrans.png",
 "./images/umbrella.png" };
 
@@ -911,7 +913,7 @@ void drawRaindrops()
 
 void render()
 {
-	Rect r;
+	Rect r, m;
 
 	//Clear the screen
 	glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -993,19 +995,24 @@ void render()
 		drawUmbrella();
 	glBindTexture(GL_TEXTURE_2D, 0);
 	//
-	//
-	unsigned int c = 0x00ffff44;
+	// Aiesha added instance 'm' and edited the control menu
+	unsigned int c = 0x00000000;
 	r.bot = g.yres - 20;
 	r.left = 10;
 	r.center = 0;
+    
+    m.bot = g.yres - 20;
+    m.left = 100;
+    m.center = 0;
+
 	ggprint8b(&r, 16, c, "M - Marco");
 	ggprint8b(&r, 16, c, "F - Forest");
 	ggprint8b(&r, 16, c, "S - Silhouette");
 	ggprint8b(&r, 16, c, "T - Trees");
-	ggprint8b(&r, 16, c, "U - Umbrella");
-	ggprint8b(&r, 16, c, "R - Rain");
-	ggprint8b(&r, 16, c, "D - Deflection");
-	ggprint8b(&r, 16, c, "N - Sounds");
+	ggprint8b(&m, 16, c, "U - Umbrella");
+	ggprint8b(&m, 16, c, "R - Rain");
+	ggprint8b(&m, 16, c, "D - Deflection");
+	ggprint8b(&m, 16, c, "N - Sounds");
     // David added to display instruction for credit scene
     ggprint8b(&r, 16, c, "C - Credits");
 }
