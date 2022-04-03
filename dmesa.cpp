@@ -7,9 +7,8 @@
 #include "dmesa.h"
 #include <GL/glx.h>
 
-
-
-typedef struct t_rect {
+typedef struct t_rect 
+{
     int left;
     int top;
     int right;
@@ -22,13 +21,15 @@ typedef struct t_rect {
 } Rect;
 
 extern void ggprint8b(Rect *r, int advance, int cref, const char *fmt, ...);
+extern void ggprint06(Rect *r, int advance, int cref, const char *fmt, ...);
 
 
 // created a instance for credit screen 
 Credits credits; 
 
 // add showpage function for my credit screen 
-void Credits :: showPage(int xres,int yres)
+//void Credits :: showPaget(int xres, int yres)
+void Credits :: showPage(int yres)
 {
     Rect r;
 
@@ -44,13 +45,26 @@ void Credits :: showPage(int xres,int yres)
   glClearColor(1.0,1.0,1.0,1.0);
   glClear(GL_COLOR_BUFFER_BIT);
   unsigned int c = 0x000000fff;
- r.bot = yres - 20;
+  r.bot = yres - 20;
   r.left = 10;
   r.center = 0;
 //  ggprint8b(
 //  glTranslate(xres/2,yres/2,0);
 //  glEnd();
-    ggprint8b(&r, 0, c, "David Mesa");
+    ggprint8b(&r, 16, c, "David Mesa");
+    ggprint8b(&r, 16, c, "Patrick Cruz");
+    ggprint8b(&r, 16, c, "Aiesha Esa");
+    ggprint8b(&r, 16, c, "Ranbir Grewal");
+
+//    glEnd();
+//  glClearColor(1.0,1.0,1.0,1.0);
+//  glClear(GL_COLOR_BUFFER_BIT);
+//  unsigned int d = 0x000000fff;
+//  r.bot = yres - 300;
+//  r.left = +100;
+//  r.center = 0;
+//    ggprint06(&r, 0, c, "falkdsfjlk;dasjf;l");
+
 
 
 
