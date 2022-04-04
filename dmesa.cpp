@@ -7,6 +7,13 @@
 #include "dmesa.h"
 #include <GL/glx.h>
 
+
+char name[] ="David Mesa";
+void dmesa(char name[] )
+{
+   
+    printf("My name is: %s", name );
+}
 typedef struct t_rect 
 {
     int left;
