@@ -8,7 +8,7 @@
 #include <std>
 
 
-void myodin() 
+void pcruz() 
 {
     string temp;
     cout<<"enter yes for odin username: ";
@@ -23,7 +23,7 @@ void myodin()
 }
 int main()
 {
-    myodin();
+    pcruz();
     return 0;
 }
 
