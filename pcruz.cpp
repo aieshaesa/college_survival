@@ -5,7 +5,8 @@
 
 //This calls the credits page.
 #include <stdio.h>
-#include <std>
+#include <iostream>
+using namespace std;
 
 
 void pcruz() 
@@ -21,10 +22,10 @@ void pcruz()
     cout << "pcruz";
     
 }
-int main()
-{
-    pcruz();
-    return 0;
-}
+//int main()
+//{
+//    pcruz();
+//    return 0;
+//}
 
 
