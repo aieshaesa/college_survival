@@ -34,6 +34,7 @@
 extern class David dm;
 extern class Credits credits;
 extern class Aiesha a_midterm;
+extern class Dmesa dmesa;
 //defined types
 typedef double Flt;
 typedef double Vec[3];
@@ -302,6 +303,8 @@ int z = 0;
 
 int main()
 {
+    dmesa.dmesa(8);
+    dmesa.dmesa(9);
 	initOpengl();
 	init();
 	clock_gettime(CLOCK_REALTIME, &timePause);
