@@ -23,6 +23,12 @@ class Aiesha {
 
 };
 
+class Pcruz
+{
+    public:
+        bool pcruz_midterm(int num);
+};
+
 
 #endif
 
