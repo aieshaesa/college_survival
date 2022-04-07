@@ -243,6 +243,7 @@ public:
 		GLXContext glc = glXCreateContext(dpy, vi, NULL, GL_TRUE);
 		glXMakeCurrent(dpy, win, glc);
 		setTitle();
+        extern void rgrewal();
 	}
 	~X11_wrapper() {
 		XDestroyWindow(dpy, win);
