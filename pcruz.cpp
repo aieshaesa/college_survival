@@ -6,26 +6,26 @@
 //This calls the credits page.
 #include <stdio.h>
 #include <iostream>
-using namespace std;
+#include "dmesa.h"
 
+//using namespace std;
 
-void pcruz() 
+//Midterm: thursday revisions
+//Test that the value falls within a range.
+Pcruz pcruz_midterm;
+
+bool Pcruz::pcruz_midterm(int num)
 {
-    string temp;
-    cout<<"enter yes for odin username: ";
-    cin >> temp;
-    
-    while(temp != "yes") {
-        cout << "enter yes for odin username: ";
-        cin >> temp;
+    if (0 <= num && num <= 50)
+    {
+        return true;
     }
-    cout << "pcruz";
-    
+    else
+    {
+        return false;
+    }
+
 }
-//int main()
-//{
-//    pcruz();
-//    return 0;
-//}
+
 
 
