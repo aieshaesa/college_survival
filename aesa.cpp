@@ -3,10 +3,13 @@
 //
 //
 #include <stdio.h>
+#include <iostream>
 #include "dmesa.h"
 #include <GL/glx.h>
 
-bool aesa_midterm(int a) {
+Aiesha a_midterm;
+
+bool Aiesha::aesa_midterm(int a) {
     bool test = false;
     if (a < 27)
         test = true;
@@ -15,6 +18,14 @@ bool aesa_midterm(int a) {
 }
 
 /*
+int main() {
+
+
+
+    return 0;
+}
+
+
 void call_funtion() {
     bool a = aesa_midterm(done);
 

@@ -11,8 +11,11 @@ class Credits
         void showPage(int yres);
 };
 
+class Aiesha {
+    public:
+        bool aesa_midterm(int a);
 
-
+};
 
 
 #endif
