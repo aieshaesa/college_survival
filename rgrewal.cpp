@@ -18,9 +18,9 @@ typedef struct t_rect
 
 extern void ggprint8b(Rect *r, int advance, int cref, const char *fmt, ...);
 Rect r;
-void rgrewal(){
+void rgrewal(int c){
     
-    unsigned int c = 0x00000000;
+    c = 0x00000000;
     ggprint8b(&r, 16, c, "David Mesa");
     ggprint8b(&r, 16,c, "Patrick Cruz");
     ggprint8b(&r, 16,c, "Aiesha Esa");
