@@ -1,18 +1,29 @@
 //Ranbir Grewal
 
 
-
 #include <iostream>
-int rgrewal(int s, int d){
-//s;
-//d;
-printf("the sum of s and d are:%x\n ", d);
-return s+d;
-}
+typedef struct t_rect 
+{
+    int left;
+    int top;
+    int right;
+    int bot;
+    int width;
+    int height;
+    int center;
+    int centerx;
+    int centery;
+} Rect;
 
-/*
-int main(){
 
-    return 0;
+extern void ggprint8b(Rect *r, int advance, int cref, const char *fmt, ...);
+Rect r;
+void rgrewal(){
+    
+    unsigned int c = 0x00000000;
+    ggprint8b(&r, 16, c, "David Mesa");
+    ggprint8b(&r, 16,c, "Patrick Cruz");
+    ggprint8b(&r, 16,c, "Aiesha Esa");
+    ggprint8b(&r, 16,c, "Ranbir Grewal");
+
 }
-*/
