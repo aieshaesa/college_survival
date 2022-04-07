@@ -35,6 +35,7 @@ extern class David dm;
 extern class Credits credits;
 extern class Aiesha a_midterm;
 extern class Dmesa dmesa;
+extern class Pcruz pcruz_midterm;
 //defined types
 typedef double Flt;
 typedef double Vec[3];
