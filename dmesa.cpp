@@ -56,17 +56,4 @@ void Credits :: showPage(int yres)
     ggprint8b(&r, 16, c, "Aiesha Esa");
     ggprint8b(&r, 16, c, "Ranbir Grewal");
 
-//    glEnd();
-//  glClearColor(1.0,1.0,1.0,1.0);
-//  glClear(GL_COLOR_BUFFER_BIT);
-//  unsigned int d = 0x000000fff;
-//  r.bot = yres - 300;
-//  r.left = +100;
-//  r.center = 0;
-//    ggprint06(&r, 0, c, "falkdsfjlk;dasjf;l");
-
-
-
-
 }
-
