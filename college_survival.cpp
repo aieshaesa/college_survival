@@ -27,15 +27,21 @@
 #include <X11/keysym.h>
 #include <GL/glx.h>
 #include "log.h"
+#include <iostream>
 //#include "ppm.h"
 #include "fonts.h"
 #include "dmesa.h"
 extern class David dm;
 extern class Credits credits;
+extern class Aiesha a_midterm;
+extern class Dmesa dmesa;
+extern class Pcruz pcruz_midterm;
 //defined types
 typedef double Flt;
 typedef double Vec[3];
 typedef Flt	Matrix[4][4];
+
+using namespace std;
 
 //macros
 #define rnd() (((double)rand())/(double)RAND_MAX)
@@ -130,6 +136,7 @@ Image img[4] = {
 "./images/campus.png",
 "./images/forestTrans.png",
 "./images/umbrella.png" };
+
 
 class Global {
 public:
@@ -237,6 +244,7 @@ public:
 		GLXContext glc = glXCreateContext(dpy, vi, NULL, GL_TRUE);
 		glXMakeCurrent(dpy, win, glc);
 		setTitle();
+        extern void rgrewal();
 	}
 	~X11_wrapper() {
 		XDestroyWindow(dpy, win);
@@ -293,9 +301,12 @@ void init();
 void physics(void);
 void render(void);
 
+int z = 0;
 
 int main()
 {
+    dmesa.dmesa(8);
+    dmesa.dmesa(9);
 	initOpengl();
 	init();
 	clock_gettime(CLOCK_REALTIME, &timePause);
@@ -310,6 +321,21 @@ int main()
 			checkMouse(&e);
 			done = checkKeys(&e);
 		}
+
+        while (z == 0) {
+            int num;
+            bool test;
+            cout << "enter a number: ";
+            cin >> num;    
+            test = a_midterm.aesa_midterm(num);
+        
+            if (test)
+                printf("your number was less than 27.\n");
+            else
+                printf("your number was greater than 27.\n");
+            z++;
+        }
+
 		//
 		//Below is a process to apply physics at a consistent rate.
 		//1. Get the current time.
@@ -317,7 +343,7 @@ int main()
 		//2. How long since we were here last?
 		timeSpan = timeDiff(&timeStart, &timeCurrent);
 		//3. Save the current time as our new starting time.
-		timeCopy(&timeStart, &timeCurrent);
+        timeCopy(&timeStart, &timeCurrent);
 		//4. Add time-span to our countdown amount.
 		physicsCountdown += timeSpan;
 		//5. Has countdown gone beyond our physics rate? 

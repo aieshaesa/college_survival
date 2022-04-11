@@ -6,6 +6,19 @@
 #include <stdio.h>
 #include "dmesa.h"
 #include <GL/glx.h>
+#include <iostream>
+using namespace std;
+Dmesa dmesa;
+
+void Dmesa :: dmesa(int a )
+{
+    int b = 10;
+    for(int i = 0; i <= b;++i)
+    {
+        cout << a << "*" << i << "=" << a * i << endl;
+    }
+}
+
 
 typedef struct t_rect 
 {
