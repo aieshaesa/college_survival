@@ -8,7 +8,12 @@
 class Credits
 {
     public:
-        void showPage(int xres, int yres);
+        void showPage(int xres,int yres,unsigned int texid,int wd, int h);
+};
+class Texture
+{
+    public:
+        void maketext(unsigned int texid, int width, int height,const void* img);
 };
 
 class Dmesa
