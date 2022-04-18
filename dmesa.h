@@ -8,7 +8,7 @@
 class Credits
 {
     public:
-        void showPage(int yres);
+        void showPage(int xres, int yres);
 };
 
 class Dmesa
