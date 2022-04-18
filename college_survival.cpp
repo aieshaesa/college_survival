@@ -942,15 +942,15 @@ void render()
 	Rect r, m;
 
 	//Clear the screen
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+   	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	//
 	//draw a quad with texture
     //David put in the credit page 
     if (g.credits_state)
     {
-       // credits.showPage(g.xres,g.yres);
-       credits.showPage(g.yres);
+       glClear(GL_COLOR_BUFFER_BIT);
+       credits.showPage(g.xres,g.yres);
         return;
     }
 	float wid = 120.0f;
