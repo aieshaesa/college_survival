@@ -33,6 +33,7 @@
 #include "dmesa.h"
 extern class David dm;
 extern class Credits credits;
+extern class Texture tex;
 extern class Aiesha a_midterm;
 extern class Dmesa dmesa;
 extern class Pcruz pcruz_midterm;
@@ -131,15 +132,17 @@ public:
 };
 
 // Aiesha changed Bigfoot image to metalslug, and forest image to campus
-Image img[4] = {
+Image img[5] = {
 "./images/metalslug.png",
 "./images/campus.png",
 "./images/forestTrans.png",
-"./images/umbrella.png" };
+"./images/umbrella.png",
+"./images/metalslug.png"};
 
 
 class Global {
 public:
+    unsigned int texid;
 	int done;
 	int xres, yres;
 	GLuint bigfootTexture;
@@ -305,8 +308,7 @@ int z = 0;
 
 int main()
 {
-    dmesa.dmesa(8);
-    dmesa.dmesa(9);
+   
 	initOpengl();
 	init();
 	clock_gettime(CLOCK_REALTIME, &timePause);
@@ -322,19 +324,6 @@ int main()
 			done = checkKeys(&e);
 		}
 
-        while (z == 0) {
-            int num;
-            bool test;
-            cout << "enter a number: ";
-            cin >> num;    
-            test = a_midterm.aesa_midterm(num);
-        
-            if (test)
-                printf("your number was less than 27.\n");
-            else
-                printf("your number was greater than 27.\n");
-            z++;
-        }
 
 		//
 		//Below is a process to apply physics at a consistent rate.
@@ -444,6 +433,11 @@ void initOpengl(void)
 	glGenTextures(1, &g.silhouetteTexture);
 	glGenTextures(1, &g.forestTexture);
 	glGenTextures(1, &g.umbrellaTexture);
+    glGenTextures(1, &g.texid);
+
+    //----------------------------------------------------------------------
+    //call Davids Function
+    tex.maketext(g.texid,img[2].width,img[2].height, img[2].data);
 	//-------------------------------------------------------------------------
 	//bigfoot
 	//
@@ -949,8 +943,8 @@ void render()
     //David put in the credit page 
     if (g.credits_state)
     {
-       glClear(GL_COLOR_BUFFER_BIT);
-       credits.showPage(g.xres,g.yres);
+     //  glClear(GL_COLOR_BUFFER_BIT);
+       credits.showPage(g.xres,g.yres,g.texid,50,50);
         return;
     }
 	float wid = 120.0f;
@@ -964,7 +958,7 @@ void render()
 			glTexCoord2f(1.0f, 1.0f); glVertex2i(g.xres, 0);
 		glEnd();
 	}
-	if (g.showBigfoot) {
+	if (g.showBigfoot){
 		glPushMatrix();
 		glTranslatef(bigfoot.pos[0], bigfoot.pos[1], bigfoot.pos[2]);
 		if (!g.silhouette) {
