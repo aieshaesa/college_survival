@@ -218,4 +218,23 @@ void Texture :: maketext(unsigned int texid, int width, int height,
     glBindTexture(GL_TEXTURE_2D,0);
 }
 
+Background background;
 
+void Background :: home(int bxres,int byres)
+{
+    Rect r;
+    glClearColor(0.0f,0.0f,0.0f,0.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    unsigned int c = 0x00ffff;
+    r.bot = byres - 20;
+    r.left = 20;
+    r.center =0;
+
+    ggprint06(&r, 16, c, "C - Credit Screen");
+    ggprint06(&r, 16, c, "b - Begin game");
+    ggprint06(&r, 16, c, "g - Gameplay controls");
+
+
+
+}
