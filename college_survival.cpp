@@ -133,12 +133,13 @@ public:
 };
 
 // Aiesha changed Bigfoot image to metalslug, and forest image to campus
-Image img[5] = {
+Image img[6] = {
 "./images/metalslug.png",
 "./images/campus.png",
 "./images/forestTrans.png",
 "./images/umbrella.png",
-"./images/King.png"};
+"./images/King.png",
+"./images/Main.jfif"};
 
 
 class Global {
@@ -147,6 +148,8 @@ public:
     unsigned int texid2;
     unsigned int texid3;
     unsigned int texid4;
+    unsigned int texid5;
+
 	int done;
 	int xres, yres;
 	GLuint bigfootTexture;
@@ -443,6 +446,7 @@ void initOpengl(void)
     glGenTextures(1, &g.texid2);
     glGenTextures(1, &g.texid3);
     glGenTextures(1, &g.texid4);
+    glGenTextures(1, &g.texid5);
 
     //----------------------------------------------------------------------
     //call Davids Function
@@ -450,6 +454,7 @@ void initOpengl(void)
     tex.maketext(g.texid2,img[0].width,img[0].height, img[0].data);
     tex.maketext(g.texid3,img[1].width,img[1].height, img[1].data);
     tex.maketext(g.texid4,img[2].width,img[2].height, img[2].data);
+    tex.maketext(g.texid5,img[5].width,img[5].height, img[5].data);
 
 	//-------------------------------------------------------------------------
 	//bigfoot
@@ -964,7 +969,7 @@ void render()
     }
     if(g.background_state)
     {
-        background.home(g.xres,g.yres);
+        background.home(g.xres,g.yres,g.texid5);
     }
 
 	float wid = 120.0f;
