@@ -44,84 +44,177 @@ extern void ggprint06(Rect *r, int advance, int cref, const char *fmt, ...);
 Credits credits; 
 
 // add showpage function for my credit screen 
-void Credits :: showPage(int xres, int yres, unsigned int texid, int wd, int h)
+void Credits :: showPage(int xres, int yres, unsigned int texid,
+        unsigned int texid2,unsigned int texid3, 
+        unsigned int texid4, int wd, int h)
 {
 
+    Rect r;
 
-  Rect r;
-  glClearColor(1.0f,1.0f,0.0f,0.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
-  glColor3ub(0,0,255);
-  glPushMatrix();
+    // Background Color
+    glClearColor(0.0f,0.0f,0.0f,0.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
 
-   static float rot = 0.0;
-   static float angle = 0.0;
-   glTranslatef(xres/2,yres/2,0);
-   glRotatef(rot,0.0f,0.0f,1.0f);
-   glTranslatef(-xres/2, -yres/2,0);
-   rot = sin(angle)* 20;
-   angle +=1.5;
-
-   glBegin(GL_TRIANGLES);
-     glVertex2f(20.0,20.0);
-     glVertex2f(xres/2.0,yres-20);
-     glVertex2f(xres-20,20.0);
-   glEnd();
-   glPopMatrix(); 
-   
-    // chooses color to  and displays name for credit space
-//  glClearColor(0.0f,0.0f,0.0f,0.0f);
-// glClear(GL_COLOR_BUFFER_BIT);
- unsigned int c = 0x00ffff;
+    // For Printing out name
+    // David Mesa
+    unsigned int c = 0x00ffff;
     r.bot = yres - 20;
-    r.left = 10;
+    r.left = 20;
     r.center =0;
+
     ggprint06(&r, 16, c, "David Mesa");
 
+    //Patrick Cruz
     unsigned int d = 0xaa0000;
     r.bot = yres - 20;
-    r.left = 100;
+    r.left = 170;
     r.center =0;
 
     ggprint06(&r, 16, d, "Patrick Cruz");
 
+    //Aiesha Esa
     unsigned int a = 0x00ff00;
     r.bot = yres - 20;
-    r.left = 200;
+    r.left = 320;
     r.center =0;
 
     ggprint06(&r, 16, a, "Aiesha Esa");
 
+    //Ranbir Grewal
     unsigned int b = 0xaa0000;
     r.bot = yres - 20;
-    r.left = 300;
+    r.left = 470;
     r.center =0;
 
     ggprint06(&r, 16, b, "Ranbir Grewal");
 
+    glEnable(GL_COLOR_MATERIAL);
+    // glPushAttrib(GL_CURRENT_BIT);
+    glColor3f(1.0f,1.0f,0.0f);
+
     glPushMatrix();
+
+    //   glColor3ub(0,255,0);
+    //   glClearColor(1.0f,1.0f,0.0f,0.0f);
+    // glClear(GL_COLOR_BUFFER_BIT);
+
+
+    static float rot = 0.0;
+    static float angle = 0.0;
+
     glTranslatef(xres/2,yres/2,0);
+    glRotatef(rot,0.0f,0.0f,1.0f);
+    glTranslatef(-xres/2, -yres/2,0);
+    rot = sin(angle)* 20;
+    angle +=1.5;
+
+    glBegin(GL_TRIANGLES);
+
+    glVertex2f(20.0,20.0);
+    glVertex2f(xres/2.0,yres-20);
+    glVertex2f(xres-20,20.0);
+
+    glEnd();
+    glPopAttrib(); 
+    glPopMatrix();
+
+
+    // Davids Picture
+    glPushMatrix();
+
+    glTranslatef(xres-600,yres-100,0);
     float w = 50.0;
     glColor3ub(255,255,255);
     glBindTexture(GL_TEXTURE_2D,texid);
+
     glBegin(GL_QUADS);
-        glTexCoord2f(0.0f,1.0f); glVertex2f(-w,-w);
-        glTexCoord2f(0.0f,0.0f); glVertex2f(-w, w);
-        glTexCoord2f(1.0f,0.0f); glVertex2f( w, w);
-        glTexCoord2f(1.0f,1.0f); glVertex2f( w,-w);
+
+    glTexCoord2f(0.0f,1.0f); glVertex2f(-w,-w);
+    glTexCoord2f(0.0f,0.0f); glVertex2f(-w, w);
+    glTexCoord2f(1.0f,0.0f); glVertex2f( w, w);
+    glTexCoord2f(1.0f,1.0f); glVertex2f( w,-w);
+
     glEnd();
+
     glBindTexture(GL_TEXTURE_2D, 0);
+
     glPopMatrix();
 
+    //Patricks Picture
+    glPushMatrix();
+
+    glTranslatef(xres-450,yres-100,0);
+    float q = 50.0;
+    glColor3ub(255,255,255);
+    glBindTexture(GL_TEXTURE_2D,texid2);
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2f(0.0f,1.0f); glVertex2f(-q,-q);
+    glTexCoord2f(0.0f,0.0f); glVertex2f(-q, q);
+    glTexCoord2f(1.0f,0.0f); glVertex2f( q, q);
+    glTexCoord2f(1.0f,1.0f); glVertex2f( q,-q);
+
+    glEnd();
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    glPopMatrix();
+
+    //Aeishia's Picture
+    glPushMatrix();
+
+    glTranslatef(xres-300,yres-100,0);
+    float p = 50.0;
+    glColor3ub(255,255,255);
+    glBindTexture(GL_TEXTURE_2D,texid3);
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2f(0.0f,1.0f); glVertex2f(-p,-p);
+    glTexCoord2f(0.0f,0.0f); glVertex2f(-p, p);
+    glTexCoord2f(1.0f,0.0f); glVertex2f( p, p);
+    glTexCoord2f(1.0f,1.0f); glVertex2f( p,-p);
+
+    glEnd();
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    glPopMatrix();
+    //Ranbir's Picture
+    glPushMatrix();
+
+    glTranslatef(xres-150,yres-100,0);
+    float t = 50.0;
+    glColor3ub(255,255,255);
+    glBindTexture(GL_TEXTURE_2D,texid4);
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2f(0.0f,1.0f); glVertex2f(-t,-t);
+    glTexCoord2f(0.0f,0.0f); glVertex2f(-t, t);
+    glTexCoord2f(1.0f,0.0f); glVertex2f( t, t);
+    glTexCoord2f(1.0f,1.0f); glVertex2f( t,-t);
+
+    glEnd();
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    glPopMatrix();
+
+
+
 }
+
 Texture tex;
-void Texture :: maketext(unsigned int texid, int width, int height, const void* img)
+void Texture :: maketext(unsigned int texid, int width, int height,
+        const void* img)
 {   
     glBindTexture(GL_TEXTURE_2D, texid);
-     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, 3, width, height , 0,
-    GL_RGB, GL_UNSIGNED_BYTE, img);
+            GL_RGB, GL_UNSIGNED_BYTE, img);
     glBindTexture(GL_TEXTURE_2D,0);
 }
 
