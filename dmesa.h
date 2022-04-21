@@ -12,10 +12,17 @@ class Credits
                          unsigned int texid3,unsigned int texid4,
                              int wd, int h);
 };
+
 class Texture
 {
     public:
         void maketext(unsigned int texid, int width, int height,const void* img);
+};
+
+class Background
+{
+    public:
+        void home(int xres, int yres);
 };
 
 class Dmesa
