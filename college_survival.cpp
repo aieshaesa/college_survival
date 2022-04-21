@@ -34,6 +34,7 @@
 extern class David dm;
 extern class Credits credits;
 extern class Texture tex;
+extern class Background background;
 extern class Aiesha a_midterm;
 extern class Dmesa dmesa;
 extern class Pcruz pcruz_midterm;
@@ -161,19 +162,21 @@ public:
 	int showUmbrella;
 	int deflection;
     int credits_state;
+    int background_state;
 	Global() {
 		logOpen();
 		done=0;
 		xres=800;
 		yres=600;
 		showBigfoot=0;
-		forest=1;
+		forest=0;
 		silhouette=1;
 		trees=1;
 		showRain=0;
 		showUmbrella=0;
 		deflection=0;
         credits_state=0;
+        background_state=1;
 	}
 	~Global() {
 		logClose();
@@ -586,6 +589,8 @@ int checkKeys(XEvent *e)
         case XK_c:
             g.credits_state = !g.credits_state;
             break;
+        case XK_g:
+            break;
 		case XK_m:
 			g.showBigfoot ^= 1;
 			if (g.showBigfoot) {
@@ -595,7 +600,7 @@ int checkKeys(XEvent *e)
 		case XK_d:
 			g.deflection ^= 1;
 			break;
-		case XK_f:
+		case XK_b:
 			g.forest ^= 1;
 			break;
 		case XK_s:
@@ -943,7 +948,7 @@ void drawRaindrops()
 
 void render()
 {
-	Rect r, m;
+//	Rect r, m;
 
 	//Clear the screen
    	glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -957,6 +962,11 @@ void render()
        credits.showPage(g.xres,g.yres,g.texid,g.texid2,g.texid3,g.texid4,50,50);
         return;
     }
+    if(g.background_state)
+    {
+        background.home(g.xres,g.yres);
+    }
+
 	float wid = 120.0f;
 	glColor3f(1.0, 1.0, 1.0);
 	if (g.forest) {
@@ -1027,24 +1037,24 @@ void render()
 	glBindTexture(GL_TEXTURE_2D, 0);
 	//
 	// Aiesha added instance 'm' and edited the control menu
-	unsigned int c = 0x00000000;
-	r.bot = g.yres - 20;
-	r.left = 10;
-	r.center = 0;
+//	unsigned int c = 0x00000000;
+//	r.bot = g.yres - 20;
+//	r.left = 10;
+//	r.center = 0;
     
-    m.bot = g.yres - 20;
-    m.left = 100;
-    m.center = 0;
+//    m.bot = g.yres - 20;
+//    m.left = 100;
+//    m.center = 0;
 
-	ggprint8b(&r, 16, c, "M - Marco");
-	ggprint8b(&r, 16, c, "F - Forest");
-	ggprint8b(&r, 16, c, "S - Silhouette");
-	ggprint8b(&r, 16, c, "T - Trees");
-	ggprint8b(&m, 16, c, "U - Umbrella");
-	ggprint8b(&m, 16, c, "R - Rain");
-	ggprint8b(&m, 16, c, "D - Deflection");
-	ggprint8b(&m, 16, c, "N - Sounds");
+//	ggprint8b(&r, 16, c, "M - Marco");
+//	ggprint8b(&r, 16, c, "F - Forest");
+//	ggprint8b(&r, 16, c, "S - Silhouette");
+//	ggprint8b(&r, 16, c, "T - Trees");
+//	ggprint8b(&m, 16, c, "U - Umbrella");
+//	ggprint8b(&m, 16, c, "R - Rain");
+//	ggprint8b(&m, 16, c, "D - Deflection");
+//	ggprint8b(&m, 16, c, "N - Sounds");
     // David added to display instruction for credit scene
-    ggprint8b(&r, 16, c, "C - Credits");
+//    ggprint8b(&r, 16, c, "C - Credits");
 }
 
