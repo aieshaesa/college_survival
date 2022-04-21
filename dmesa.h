@@ -22,7 +22,7 @@ class Texture
 class Background
 {
     public:
-        void home(int xres, int yres);
+        void home(int xres, int yres,unsigned int texid5);
 };
 
 class Dmesa
