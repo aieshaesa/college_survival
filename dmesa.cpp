@@ -220,21 +220,49 @@ void Texture :: maketext(unsigned int texid, int width, int height,
 
 Background background;
 
-void Background :: home(int bxres,int byres)
+void Background :: home(int bxres,int byres,unsigned int texid5)
 {
     Rect r;
     glClearColor(0.0f,0.0f,0.0f,0.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
+    //Menu options
     unsigned int c = 0x00ffff;
-    r.bot = byres - 20;
-    r.left = 20;
+    r.bot = byres - 300;
+    r.left = bxres-360;
     r.center =0;
 
     ggprint06(&r, 16, c, "C - Credit Screen");
     ggprint06(&r, 16, c, "b - Begin game");
     ggprint06(&r, 16, c, "g - Gameplay controls");
 
+    //Game Name
+    unsigned int d = 0xff0000;
+    r.bot = byres -100;
+    r.left = bxres- 360;
+    r.center =0;
 
+    ggprint06(&r, 16, d, "College Survival");
+
+    glPushMatrix();
+
+    //Main Menu picture
+    glTranslatef(bxres/2,byres-200,0);
+    float t = 75;
+    glColor3ub(255,255,255);
+    glBindTexture(GL_TEXTURE_2D,texid5);
+
+    glBegin(GL_QUADS);
+
+    glTexCoord2f(0.0f,1.0f); glVertex2f(-t,-t);
+    glTexCoord2f(0.0f,0.0f); glVertex2f(-t, t);
+    glTexCoord2f(1.0f,0.0f); glVertex2f( t, t);
+    glTexCoord2f(1.0f,1.0f); glVertex2f( t,-t);
+
+    glEnd();
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    glPopMatrix();
 
 }
