@@ -8,7 +8,9 @@
 class Credits
 {
     public:
-        void showPage(int xres,int yres,unsigned int texid,int wd, int h);
+        void showPage(int xres,int yres,unsigned int texid,unsigned int texid2,
+                         unsigned int texid3,unsigned int texid4,
+                             int wd, int h);
 };
 class Texture
 {
