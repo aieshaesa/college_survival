@@ -27,15 +27,23 @@
 #include <X11/keysym.h>
 #include <GL/glx.h>
 #include "log.h"
+#include <iostream>
 //#include "ppm.h"
 #include "fonts.h"
 #include "dmesa.h"
 extern class David dm;
 extern class Credits credits;
+extern class Texture tex;
+extern class Background background;
+extern class Aiesha a_midterm;
+extern class Dmesa dmesa;
+extern class Pcruz pcruz_midterm;
 //defined types
 typedef double Flt;
 typedef double Vec[3];
 typedef Flt	Matrix[4][4];
+
+using namespace std;
 
 //macros
 #define rnd() (((double)rand())/(double)RAND_MAX)
@@ -123,14 +131,25 @@ public:
 			unlink(ppmname);
 	}
 };
-Image img[4] = {
+
+// Aiesha changed Bigfoot image to metalslug, and forest image to campus
+Image img[6] = {
 "./images/metalslug.png",
-"./images/forest.png",
+"./images/campus.png",
 "./images/forestTrans.png",
-"./images/umbrella.png" };
+"./images/umbrella.png",
+"./images/King.png",
+"./images/Main.jfif"};
+
 
 class Global {
 public:
+    unsigned int texid;
+    unsigned int texid2;
+    unsigned int texid3;
+    unsigned int texid4;
+    unsigned int texid5;
+
 	int done;
 	int xres, yres;
 	GLuint bigfootTexture;
@@ -146,19 +165,21 @@ public:
 	int showUmbrella;
 	int deflection;
     int credits_state;
+    int background_state;
 	Global() {
 		logOpen();
 		done=0;
 		xres=800;
 		yres=600;
 		showBigfoot=0;
-		forest=1;
+		forest=0;
 		silhouette=1;
 		trees=1;
 		showRain=0;
 		showUmbrella=0;
 		deflection=0;
         credits_state=0;
+        background_state=1;
 	}
 	~Global() {
 		logClose();
@@ -235,6 +256,7 @@ public:
 		GLXContext glc = glXCreateContext(dpy, vi, NULL, GL_TRUE);
 		glXMakeCurrent(dpy, win, glc);
 		setTitle();
+        extern void rgrewal();
 	}
 	~X11_wrapper() {
 		XDestroyWindow(dpy, win);
@@ -291,9 +313,11 @@ void init();
 void physics(void);
 void render(void);
 
+int z = 0;
 
 int main()
 {
+   
 	initOpengl();
 	init();
 	clock_gettime(CLOCK_REALTIME, &timePause);
@@ -308,6 +332,8 @@ int main()
 			checkMouse(&e);
 			done = checkKeys(&e);
 		}
+
+
 		//
 		//Below is a process to apply physics at a consistent rate.
 		//1. Get the current time.
@@ -315,7 +341,7 @@ int main()
 		//2. How long since we were here last?
 		timeSpan = timeDiff(&timeStart, &timeCurrent);
 		//3. Save the current time as our new starting time.
-		timeCopy(&timeStart, &timeCurrent);
+        timeCopy(&timeStart, &timeCurrent);
 		//4. Add time-span to our countdown amount.
 		physicsCountdown += timeSpan;
 		//5. Has countdown gone beyond our physics rate? 
@@ -416,6 +442,20 @@ void initOpengl(void)
 	glGenTextures(1, &g.silhouetteTexture);
 	glGenTextures(1, &g.forestTexture);
 	glGenTextures(1, &g.umbrellaTexture);
+    glGenTextures(1, &g.texid);
+    glGenTextures(1, &g.texid2);
+    glGenTextures(1, &g.texid3);
+    glGenTextures(1, &g.texid4);
+    glGenTextures(1, &g.texid5);
+
+    //----------------------------------------------------------------------
+    //call Davids Function
+    tex.maketext(g.texid,img[4].width,img[4].height, img[4].data);
+    tex.maketext(g.texid2,img[0].width,img[0].height, img[0].data);
+    tex.maketext(g.texid3,img[1].width,img[1].height, img[1].data);
+    tex.maketext(g.texid4,img[2].width,img[2].height, img[2].data);
+    tex.maketext(g.texid5,img[5].width,img[5].height, img[5].data);
+
 	//-------------------------------------------------------------------------
 	//bigfoot
 	//
@@ -554,6 +594,8 @@ int checkKeys(XEvent *e)
         case XK_c:
             g.credits_state = !g.credits_state;
             break;
+        case XK_g:
+            break;
 		case XK_m:
 			g.showBigfoot ^= 1;
 			if (g.showBigfoot) {
@@ -563,7 +605,7 @@ int checkKeys(XEvent *e)
 		case XK_d:
 			g.deflection ^= 1;
 			break;
-		case XK_f:
+		case XK_b:
 			g.forest ^= 1;
 			break;
 		case XK_s:
@@ -911,19 +953,25 @@ void drawRaindrops()
 
 void render()
 {
-	Rect r;
+//	Rect r, m;
 
 	//Clear the screen
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+   	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	//
 	//draw a quad with texture
     //David put in the credit page 
     if (g.credits_state)
     {
-        credits.showPage(g.xres,g.yres);
+     //  glClear(GL_COLOR_BUFFER_BIT);
+       credits.showPage(g.xres,g.yres,g.texid,g.texid2,g.texid3,g.texid4,50,50);
         return;
     }
+    if(g.background_state)
+    {
+        background.home(g.xres,g.yres,g.texid5);
+    }
+
 	float wid = 120.0f;
 	glColor3f(1.0, 1.0, 1.0);
 	if (g.forest) {
@@ -935,7 +983,7 @@ void render()
 			glTexCoord2f(1.0f, 1.0f); glVertex2i(g.xres, 0);
 		glEnd();
 	}
-	if (g.showBigfoot) {
+	if (g.showBigfoot){
 		glPushMatrix();
 		glTranslatef(bigfoot.pos[0], bigfoot.pos[1], bigfoot.pos[2]);
 		if (!g.silhouette) {
@@ -993,20 +1041,25 @@ void render()
 		drawUmbrella();
 	glBindTexture(GL_TEXTURE_2D, 0);
 	//
-	//
-	unsigned int c = 0x00ffff44;
-	r.bot = g.yres - 20;
-	r.left = 10;
-	r.center = 0;
-	ggprint8b(&r, 16, c, "M - Marco");
-	ggprint8b(&r, 16, c, "F - Forest");
-	ggprint8b(&r, 16, c, "S - Silhouette");
-	ggprint8b(&r, 16, c, "T - Trees");
-	ggprint8b(&r, 16, c, "U - Umbrella");
-	ggprint8b(&r, 16, c, "R - Rain");
-	ggprint8b(&r, 16, c, "D - Deflection");
-	ggprint8b(&r, 16, c, "N - Sounds");
+	// Aiesha added instance 'm' and edited the control menu
+//	unsigned int c = 0x00000000;
+//	r.bot = g.yres - 20;
+//	r.left = 10;
+//	r.center = 0;
+    
+//    m.bot = g.yres - 20;
+//    m.left = 100;
+//    m.center = 0;
+
+//	ggprint8b(&r, 16, c, "M - Marco");
+//	ggprint8b(&r, 16, c, "F - Forest");
+//	ggprint8b(&r, 16, c, "S - Silhouette");
+//	ggprint8b(&r, 16, c, "T - Trees");
+//	ggprint8b(&m, 16, c, "U - Umbrella");
+//	ggprint8b(&m, 16, c, "R - Rain");
+//	ggprint8b(&m, 16, c, "D - Deflection");
+//	ggprint8b(&m, 16, c, "N - Sounds");
     // David added to display instruction for credit scene
-    ggprint8b(&r, 16, c, "C - Credits");
+//    ggprint8b(&r, 16, c, "C - Credits");
 }
 
