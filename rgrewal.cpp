@@ -16,7 +16,8 @@
 #include "fonts.h"
 #include "dmesa.h"
 //#include "college_survival.cpp"
-Rgrewal rgrewal;
+
+
 class College {
 public:
 
@@ -45,6 +46,90 @@ public:
 } marcos;
 
 
+void rm(){
+extern void ggprint8b(Rect *r, int advance, int cref, const char *fmt, ...);
+extern void ggprint06(Rect *r, int advance, int cref, const char *fmt, ...);
+
+
+Rect r;
+int yres = 0;
+int menu = 0;
+switch(menu){
+       case 'g':
+     glClearColor(0.0f,0.0f,0.0f,0.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // For Printing out name
+    unsigned int c = 0x00ffff;
+    r.bot = yres - 20;
+    r.left = 20;
+    r.center =0;
+    ggprint06(&r, 16, c, "To move left use left arrow key");
+
+}
+}
+class Image {
+public:
+	int width, height;
+	unsigned char *data;
+	~Image() { delete [] data; }
+	Image(const char *fname) {
+		if (fname[0] == '\0')
+			return;
+		//printf("fname **%s**\n", fname);
+		int ppmFlag = 0;
+		char name[40];
+		strcpy(name, fname);
+		int slen = strlen(name);
+		char ppmname[80];
+		if (strncmp(name+(slen-4), ".ppm", 4) == 0)
+			ppmFlag = 1;
+		if (ppmFlag) {
+			strcpy(ppmname, name);
+		} else {
+			name[slen-4] = '\0';
+			//printf("name **%s**\n", name);
+			sprintf(ppmname,"%s.ppm", name);
+			//printf("ppmname **%s**\n", ppmname);
+			char ts[100];
+			//system("convert eball.jpg eball.ppm");
+			sprintf(ts, "convert %s %s", fname, ppmname);
+			system(ts);
+		}
+		//sprintf(ts, "%s", name);
+		FILE *fpi = fopen(ppmname, "r");
+		if (fpi) {
+			char line[200];
+			fgets(line, 200, fpi);
+			fgets(line, 200, fpi);
+			//skip comments and blank lines
+			while (line[0] == '#' || strlen(line) < 2)
+				fgets(line, 200, fpi);
+			sscanf(line, "%i %i", &width, &height);
+			fgets(line, 200, fpi);
+			//get pixel data
+			int n = width * height * 3;			
+			data = new unsigned char[n];			
+			for (int i=0; i<n; i++)
+				data[i] = fgetc(fpi);
+			fclose(fpi);
+		} else {
+			printf("ERROR opening image: %s\n",ppmname);
+			exit(0);
+		}
+		if (!ppmFlag){
+            unlink(ppmname);
+	}
+    }
+};
+
+
+
+Image image[1] = {
+ "./images/metalslug.png",
+
+};
+
 void Marcosmovement(){
 
 int addgrav = 1;
@@ -64,7 +149,6 @@ int addgrav = 1;
 		marcos.vel[1] = -marcos.vel[1];
 		addgrav = 0;
 	}
-	//Gravity?
 	if (addgrav)
 		marcos.vel[1] -= 0.75;
 }
