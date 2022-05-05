@@ -38,6 +38,7 @@ extern class Background background;
 extern class Aiesha a_midterm;
 extern class Dmesa dmesa;
 extern class Pcruz pcruz_midterm;
+extern class Bullet Bullets;
 //defined types
 typedef double Flt;
 typedef double Vec[3];
