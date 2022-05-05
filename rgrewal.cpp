@@ -16,7 +16,6 @@
 #include "fonts.h"
 #include "dmesa.h"
 //#include "college_survival.cpp"
-Rgrewal rgrewal;
 class College {
 public:
 
