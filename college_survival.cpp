@@ -618,10 +618,12 @@ int checkKeys(XEvent *e)
 			break;
 		case XK_u:
 			g.showUmbrella ^= 1;
+			umbrella.shape ^= 1
 			break;
+			/*
 		case XK_p:
 			umbrella.shape ^= 1;
-			break;
+			break;*/
 		case XK_r:
 			g.showRain ^= 1;
 			break;
