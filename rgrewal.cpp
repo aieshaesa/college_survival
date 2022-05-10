@@ -16,6 +16,8 @@
 #include "fonts.h"
 #include "dmesa.h"
 //#include "college_survival.cpp"
+extern class Texture tex;
+
 
 
 class College {
@@ -25,6 +27,8 @@ public:
 	int xres, yres;
 	GLuint bigfootTexture;
     GLuint marcoTexture;
+
+    unsigned int texid;
 	int showBigfoot;
 	College() {
 		logOpen();
@@ -53,11 +57,11 @@ extern void ggprint06(Rect *r, int advance, int cref, const char *fmt, ...);
 
 Rect r;
 int yres = 0;
-int menu = 0;
+char menu = 0;
 switch(menu){
        case 'g':
      glClearColor(0.0f,0.0f,0.0f,0.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+     glClear(GL_COLOR_BUFFER_BIT);
 
     // For Printing out name
     unsigned int c = 0x00ffff;
@@ -68,6 +72,7 @@ switch(menu){
 
 }
 }
+
 class Image {
 public:
 	int width, height;
@@ -84,7 +89,7 @@ public:
 		char ppmname[80];
 		if (strncmp(name+(slen-4), ".ppm", 4) == 0)
 			ppmFlag = 1;
-		if (ppmFlag) {
+;		if (ppmFlag) {
 			strcpy(ppmname, name);
 		} else {
 			name[slen-4] = '\0';
@@ -117,22 +122,36 @@ public:
 			printf("ERROR opening image: %s\n",ppmname);
 			exit(0);
 		}
-		if (!ppmFlag){
-            unlink(ppmname);
+		if (!ppmFlag)
+			unlink(ppmname);
 	}
-    }
 };
 
 
-
-Image image[1] = {
- "./images/metalslug.png",
-
+Image image[6] = {
+"./images/metalslug.png",
+"./images/campus.png",
+"./images/forestTrans.png",
+"./images/umbrella.png",
+"./images/King.png",
+"./images/Main.jfif"
 };
+
 
 void Marcosmovement(){
+    int w = image[0].width;
+	int h = image[0].height;
+	//
+	glBindTexture(GL_TEXTURE_2D, college.bigfootTexture);
+	//
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0,
+		GL_RGB, GL_UNSIGNED_BYTE, image[0].data);
 
-int addgrav = 1;
+
+
+    int addgrav = 1;
 	//Update position
 	marcos.pos[0] += marcos.vel[0];
 	marcos.pos[1] += marcos.vel[1];
@@ -151,7 +170,13 @@ int addgrav = 1;
 	}
 	if (addgrav)
 		marcos.vel[1] -= 0.75;
+
+	//
+	//
 }
+
+
+
 
 
 
