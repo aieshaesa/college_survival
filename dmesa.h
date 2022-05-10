@@ -43,6 +43,11 @@ class Pcruz
         bool pcruz_midterm(int num);
 };
 
+class Bullets
+{
+    public:
+        void moveBullet(int nbullets, float vec);
+};
 
 #endif
 
