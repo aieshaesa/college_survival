@@ -16,13 +16,13 @@
 #include "fonts.h"
 #include "dmesa.h"
 //#include "college_survival.cpp"
-<<<<<<< HEAD
+
 extern class Texture tex;
 
 
 
 =======
->>>>>>> f7cabbe584b5b5eb2a5e49d3db97308c754aed57
+
 class College {
 public:
 
