@@ -10,6 +10,7 @@
 #include <iostream>
 #include <math.h>
 #include <string>
+#include "fonts.h"
 using namespace std;
 Dmesa dmesa;
 
@@ -21,24 +22,6 @@ void Dmesa :: dmesa(int a )
         cout << a << "*" << i << "=" << a * i << endl;
     }
 }
-
-
-typedef struct t_rect 
-{
-    int left;
-    int top;
-    int right;
-    int bot;
-    int width;
-    int height;
-    int center;
-    int centerx;
-    int centery;
-} Rect;
-
-extern void ggprint8b(Rect *r, int advance, int cref, const char *fmt, ...);
-extern void ggprint06(Rect *r, int advance, int cref, const char *fmt, ...);
-
 
 // created a instance for credit screen 
 Credits credits; 
@@ -88,16 +71,11 @@ void Credits :: showPage(int xres, int yres, unsigned int texid,
 
     ggprint06(&r, 16, b, "Ranbir Grewal");
 
-    glEnable(GL_COLOR_MATERIAL);
-    // glPushAttrib(GL_CURRENT_BIT);
-    glColor3f(1.0f,1.0f,0.0f);
-
+    //Triangle in the background of credits page    
     glPushMatrix();
-
-    //   glColor3ub(0,255,0);
-    //   glClearColor(1.0f,1.0f,0.0f,0.0f);
-    // glClear(GL_COLOR_BUFFER_BIT);
-
+  //  glColor3f(1.0f,1.0f,0.0f);
+//      glClearColor(1.0f,1.0f,0.0f,0.0f);
+ //   glClear(GL_COLOR_BUFFER_BIT);
 
     static float rot = 0.0;
     static float angle = 0.0;
@@ -115,9 +93,8 @@ void Credits :: showPage(int xres, int yres, unsigned int texid,
     glVertex2f(xres-20,20.0);
 
     glEnd();
-    glPopAttrib(); 
-    glPopMatrix();
 
+    glPopMatrix();
 
     // Davids Picture
     glPushMatrix();
@@ -135,9 +112,7 @@ void Credits :: showPage(int xres, int yres, unsigned int texid,
     glTexCoord2f(1.0f,1.0f); glVertex2f( w,-w);
 
     glEnd();
-
     glBindTexture(GL_TEXTURE_2D, 0);
-
     glPopMatrix();
 
     //Patricks Picture
@@ -156,9 +131,7 @@ void Credits :: showPage(int xres, int yres, unsigned int texid,
     glTexCoord2f(1.0f,1.0f); glVertex2f( q,-q);
 
     glEnd();
-
     glBindTexture(GL_TEXTURE_2D, 0);
-
     glPopMatrix();
 
     //Aeishia's Picture
@@ -177,10 +150,9 @@ void Credits :: showPage(int xres, int yres, unsigned int texid,
     glTexCoord2f(1.0f,1.0f); glVertex2f( p,-p);
 
     glEnd();
-
     glBindTexture(GL_TEXTURE_2D, 0);
-
     glPopMatrix();
+
     //Ranbir's Picture
     glPushMatrix();
 
@@ -197,12 +169,8 @@ void Credits :: showPage(int xres, int yres, unsigned int texid,
     glTexCoord2f(1.0f,1.0f); glVertex2f( t,-t);
 
     glEnd();
-
     glBindTexture(GL_TEXTURE_2D, 0);
-
     glPopMatrix();
-
-
 
 }
 
