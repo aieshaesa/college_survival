@@ -46,7 +46,7 @@ public:
 
 
  typedef double Vec[3];
- class Marco{
+ class Marcos{
 public:
 	Vec pos;
 	Vec vel;
@@ -131,11 +131,13 @@ public:
 };
 
 
-Image image[6] = {
-"./images/metalslug.png",
+Image image[5] = {
+
+
+//"./images/metalslug.png",
 "./images/campus.png",
 "./images/forestTrans.png",
-"./images/umbrella.png",
+"./images/metalslug.png",
 "./images/King.png",
 "./images/Main.jfif"
 };
@@ -151,9 +153,6 @@ void Marcosmovement(){
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0,
 		GL_RGB, GL_UNSIGNED_BYTE, image[0].data);
-
-
-
     int addgrav = 1;
 	//Update position
 	marcos.pos[0] += marcos.vel[0];
