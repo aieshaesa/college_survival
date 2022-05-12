@@ -138,7 +138,7 @@ Image img[6] = {
 "./images/metalslug.png",
 "./images/campus.png",
 "./images/forestTrans.png",
-"./images/umbrella.png",
+"./images/metalslug.png,
 "./images/King.png",
 "./images/Main.jfif"};
 
