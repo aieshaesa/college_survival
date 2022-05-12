@@ -54,7 +54,7 @@ class Enemy {
 } enemy;
 
 
-void rm() {
+void move() {
 	extern void ggprint8b(Rect *r, int advance, int cref, const char *fmt, ...);
 	extern void ggprint06(Rect *r, int advance, int cref, const char *fmt, ...);
 
@@ -67,7 +67,7 @@ void rm() {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			// For Printing out name
-			unsigned int c = 0x00ffff;
+			//unsigned int c = 0x00ffff;
 			r.bot = yres - 20;
 			r.left = 20;
 			r.center =0;
@@ -130,7 +130,7 @@ class Image {
 };
 
 
-Image image[7] = {
+Image pics[7] = {
 "./images/metalslug.png",
 "./images/campus.png",
 "./images/forestTrans.png",
@@ -142,15 +142,15 @@ Image image[7] = {
 
 
 void EnemyMovement(){
-    int w = image[6].width;
-	int h = image[6].height;
+    int w = pics[6].width;
+	int h = pics[6].height;
 	//
 	glBindTexture(GL_TEXTURE_2D, survival.bigfootTexture);
 	//
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0,
-		GL_RGB, GL_UNSIGNED_BYTE, image[6].data);
+		GL_RGB, GL_UNSIGNED_BYTE, pics[6].data);
 
 
 
