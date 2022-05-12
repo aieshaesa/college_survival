@@ -145,7 +145,7 @@ void EnemyMovement(){
     int w = image[6].width;
 	int h = image[6].height;
 	//
-	glBindTexture(GL_TEXTURE_2D, college.bigfootTexture);
+	glBindTexture(GL_TEXTURE_2D, survival.bigfootTexture);
 	//
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
